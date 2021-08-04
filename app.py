@@ -34,5 +34,19 @@ def main():
   result = {"result": '결과'}
   return result
 
+@app.route("/userlog/<user_name>")
+def get_user_log(user_name: str):
+    user_log = getUserAllGameData(user_name)
+    return user_log
+
+@app.route("/friend/<user_name>")
+def get_user_friend(user_name):
+  user_log = getUserAllGameData(user_name)
+  if (user_log == {}):
+    return {"result": "no-summoner"}
+  
+  friend = getUserFrield(user_log)
+  return friend
+
 # if __name__ == "__main__":
 #   app.run(debug=True)
