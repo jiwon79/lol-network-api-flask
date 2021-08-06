@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-
+import time
 from modules.opgg import *
 
 ORIGIN = [
@@ -47,6 +47,14 @@ def get_user_friend(user_name):
   
   friend = getUserFrield(user_log)
   return friend
+
+@app.route("/duration/<int:duration>")
+def waitDuration(duration):
+  for i in range(duration):
+    print(i+1)
+    time.sleep(1)
+  return {"result" : str(duration)+' end'}
+
 
 # if __name__ == "__main__":
 #   app.run(debug=True)
